@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static LinkedList<Town> towns = new LinkedList<>();
+    //private static LinkedList<Town> towns = new LinkedList<>();
 
     public static void main(String[] args) {
-        //LinkedList<Town>towns = new LinkedList<Town>();
+        LinkedList<Town> towns = new LinkedList<Town>();
         Town Sydney = createTown("Sydney", 0);
         Town Adelaide = createTown("Adelaide", 1374);
         Town AliceSprings = createTown("Alice Springs", 2771);
@@ -45,7 +45,7 @@ public class Main {
                 case ("B"), ("b") -> showBackward(towns);
                 case ("L"), ("l") -> listPlaces(towns);
                 case ("R"), ("r") -> removeTowns(towns);
-                case ("M"), ("m") -> menuOption();
+                case ("M"), ("m") -> menuOption(towns);
                 default -> {
                     flag = false;
                     System.out.println("Good bye");
@@ -113,7 +113,7 @@ public class Main {
         System.out.println(menu);
     }
 
-    private static void menuOption() {
+    private static void menuOption(LinkedList<Town> towns) {
         String option = """
                 create and add a town?
                 (1st) create a town with name and km from Sydney
@@ -122,9 +122,12 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         System.out.println("please input the name of the town");
         String townName = scan.nextLine();
-        System.out.println("please input the distance from sydney");
+
+        System.out.println("please input the distance from Sydney");
         int kmFromSydney = Integer.parseInt(scan.nextLine());
         Town createdTown = createTown(townName, kmFromSydney);
         addTown(towns, createdTown);
+
+        System.out.println(towns);
     }
 }

@@ -1,5 +1,7 @@
 package com.dev.lpa;
 
+import java.util.Objects;
+
 public class Town implements Comparable <Town>{
     private String name;
     private int km;
@@ -29,5 +31,17 @@ public class Town implements Comparable <Town>{
         }
         return -1;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Town town = (Town) obj;
+        return km == town.km && name.equalsIgnoreCase(town.name);
+    }
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(name, km);
+//    }
 
 }
